@@ -57,26 +57,6 @@ export function SuccessStories() {
           </a>
         </Reveal>
       </div>
-
-      {/* Results ticker */}
-      <div className="mt-16 overflow-hidden border-y border-sky/25 bg-navy py-3">
-        <div className="flex w-max animate-marquee items-center gap-12 text-sm text-sky-light">
-          {[
-            "🏆 Dhaka student admitted to Amherst College · 100% Aid — 2024",
-            "💵 Chittagong student receives GKS Full Scholarship — 2024",
-            "✅ 3 students admitted to top-30 US universities in 2024",
-            "🎓 Sylhet student wins Stipendium Hungaricum — 2024",
-            "✨ Dhaka student admitted to UCL with merit — 2024",
-            "🏆 Dhaka student admitted to Amherst College · 100% Aid — 2024",
-            "💵 Chittagong student receives GKS Full Scholarship — 2024",
-            "✅ 3 students admitted to top-30 US universities in 2024",
-            "🎓 Sylhet student wins Stipendium Hungaricum — 2024",
-            "✨ Dhaka student admitted to UCL with merit — 2024",
-          ].map((line, i) => (
-            <span key={i} className="whitespace-nowrap">{line}</span>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

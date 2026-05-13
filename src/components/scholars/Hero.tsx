@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Phone, ArrowRight, Star, Mouse } from "lucide-react";
+import { Phone, ArrowRight, Star } from "lucide-react";
 import { WA_LINK } from "@/lib/scholars-data";
 
 export function Hero() {
@@ -173,11 +173,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute inset-x-0 bottom-6 flex flex-col items-center gap-2 text-white/50">
-        <Mouse className="h-5 w-5 animate-scroll-bounce" />
-        <span className="text-[11px] uppercase tracking-widest">Scroll to explore</span>
-      </div>
     </section>
   );
 }

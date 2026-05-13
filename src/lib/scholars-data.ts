@@ -17,13 +17,6 @@ export const COUNTRIES = [
   { flag: "🇪🇸", name: "Spain", tag: "Cultural & Affordable", note: "Madrid · Barcelona · IE" },
 ];
 
-export const TICKER_ITEMS = [
-  "SAT Mentorship", "IELTS Prep", "TOEFL Coaching", "Duolingo English Test",
-  "Common App Support", "SOP Writing", "Scholarship Track", "Visa Guidance",
-  "University Admissions", "College List Building", "CSS Profile / ISFAA",
-  "Recommendation Letters", "Essay Review", "File Opening", "Free Resources",
-];
-
 export const STATS = [
   { value: 11, suffix: "+", label: "Countries Covered" },
   { value: 100, suffix: "%", label: "Dedicated Support" },
