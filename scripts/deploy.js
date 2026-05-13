@@ -1,5 +1,5 @@
 import { Client } from 'basic-ftp';
-import { readdirSync, statSync } from 'fs';
+import { readdirSync, statSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -22,8 +22,52 @@ if (!FTP_PASS) {
   process.exit(1);
 }
 
+function generateIndexHtml(clientDir) {
+  const assetsDir = join(clientDir, 'assets');
+  const files = readdirSync(assetsDir);
+  
+  const cssFiles = files.filter(f => f.endsWith('.css'));
+  const jsFiles = files.filter(f => f.endsWith('.js'));
+  
+  const cssLinks = cssFiles
+    .map(f => `    <link rel="stylesheet" href="/assets/${f}" />`)
+    .join('\n');
+  
+  const jsScripts = jsFiles
+    .map(f => `    <script type="module" src="/assets/${f}"><\/script>`)
+    .join('\n');
+  
+  const html = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scholars Cafe</title>
+${cssLinks}
+  </head>
+  <body>
+    <div id="app"></div>
+${jsScripts}
+  </body>
+</html>
+`;
+  
+  const indexPath = join(clientDir, 'index.html');
+  writeFileSync(indexPath, html);
+  console.log('📝 Generated index.html');
+}
+
 async function uploadDir(client, localPath, remotePath) {
   const files = readdirSync(localPath);
+  
+  // First, ensure the assets directory exists if needed
+  if (remotePath && remotePath !== '.' && files.some(f => statSync(join(localPath, f)).isDirectory())) {
+    try {
+      await client.ensureDir(remotePath);
+    } catch (e) {
+      // May already exist
+    }
+  }
   
   for (const file of files) {
     const localFile = join(localPath, file);
@@ -32,10 +76,9 @@ async function uploadDir(client, localPath, remotePath) {
     
     if (stat.isDirectory()) {
       try {
-        await client.mkdir(remoteFile);
+        await client.ensureDir(remoteFile);
       } catch (e) {
-        // Dir may already exist - ignore error
-        console.log(`  📁 ${remoteFile} (exists or permission denied)`);
+        // May already exist
       }
       await uploadDir(client, localFile, remoteFile);
     } else {
@@ -49,6 +92,9 @@ async function deploy() {
   const client = new Client();
   
   try {
+    // Generate index.html based on actual assets
+    generateIndexHtml(LOCAL_DIR);
+    
     console.log('🔗 Connecting to Hostinger FTP...');
     await client.access({
       host: FTP_HOST,
