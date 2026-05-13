@@ -1,6 +1,7 @@
 import { Reveal, RevealStagger, StaggerItem } from "./Reveal";
 import { RESOURCES } from "@/lib/scholars-data";
 import { ArrowRight } from "lucide-react";
+import { ScholarIcon } from "./ScholarIcon";
 
 export function Resources() {
   return (
@@ -23,7 +24,9 @@ export function Resources() {
                 <span className="inline-flex w-fit rounded-full bg-sky-tint px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-sky-deep">
                   {r.tag}
                 </span>
-                <div className="mt-5 text-4xl">{r.icon}</div>
+                <div className="mt-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-tint text-sky-deep">
+                  <ScholarIcon name={r.icon} className="h-7 w-7" />
+                </div>
                 <h3 className="mt-4 font-display text-lg font-bold text-navy">{r.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{r.teaser}</p>
                 <a href="#newsletter" className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-sky-deep">

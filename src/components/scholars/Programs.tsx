@@ -1,6 +1,7 @@
 import { Reveal, RevealStagger, StaggerItem } from "./Reveal";
 import { PROGRAMS, WA_LINK } from "@/lib/scholars-data";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Star } from "lucide-react";
+import { ScholarIcon } from "./ScholarIcon";
 
 export function Programs() {
   return (
@@ -27,15 +28,22 @@ export function Programs() {
                 }`}
               >
                 <div
-                  className={`inline-flex w-fit items-center rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${
+                  className={`inline-flex w-fit items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${
                     p.featured
                       ? "border-gold/40 bg-gold/15 text-gold"
                       : "border-sky/30 bg-sky/10 text-sky-deep"
                   }`}
                 >
+                  {p.featured && <Star className="h-3 w-3 fill-current" aria-hidden />}
                   {p.badge}
                 </div>
-                <div className="mt-6 text-5xl">{p.icon}</div>
+                <div className="mt-6">
+                  <ScholarIcon
+                    name={p.icon}
+                    className={`h-14 w-14 ${p.featured ? "text-gold" : "text-sky-deep"}`}
+                    strokeWidth={1.5}
+                  />
+                </div>
                 <h3 className={`mt-4 font-display text-2xl font-extrabold ${p.featured ? "text-white" : "text-navy"}`}>
                   {p.title}
                 </h3>

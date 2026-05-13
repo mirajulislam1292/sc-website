@@ -1,6 +1,7 @@
 import { Reveal, RevealStagger, StaggerItem } from "./Reveal";
 import { VALUES, TEAM } from "@/lib/scholars-data";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Target } from "lucide-react";
+import { ScholarIcon } from "./ScholarIcon";
 
 export function About() {
   return (
@@ -25,8 +26,11 @@ export function About() {
             </div>
 
             <div className="mt-7 rounded-2xl border-l-4 border-sky bg-sky/10 p-6">
-              <div className="text-[15px] leading-relaxed text-white/85">
-                <span className="font-bold">🎯 Our Mission:</span> To empower every Bangladeshi student with the mentorship, strategy, and resources to unlock world-class international education — from their first SAT session to their visa approval day.
+              <div className="flex gap-3 text-[15px] leading-relaxed text-white/85">
+                <Target className="mt-0.5 h-5 w-5 flex-shrink-0 text-sky-light" strokeWidth={2} aria-hidden />
+                <div>
+                  <span className="font-bold">Our mission:</span> To empower every Bangladeshi student with the mentorship, strategy, and resources to unlock world-class international education — from their first SAT session to their visa approval day.
+                </div>
               </div>
             </div>
           </Reveal>
@@ -35,7 +39,7 @@ export function About() {
             {VALUES.map((v) => (
               <StaggerItem key={v.title}>
                 <div className="h-full rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-sky/50 hover:bg-white/10">
-                  <div className="text-3xl">{v.icon}</div>
+                  <ScholarIcon name={v.icon} className="h-8 w-8 text-sky-light" strokeWidth={1.5} />
                   <h3 className="mt-4 font-display text-lg font-bold">{v.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-white/70">{v.desc}</p>
                 </div>

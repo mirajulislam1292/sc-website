@@ -1,9 +1,11 @@
+import type { ScholarIconName } from "./scholar-icon-types";
+
 export const WA_LINK = "https://wa.me/8801560001325";
 export const EMAIL = "contact.scholarscafe@gmail.com";
 export const PHONE = "+880 1560-001325";
 
 export const COUNTRIES = [
-  { flag: "🇺🇸", name: "USA", tag: "⭐ Primary Focus", featured: true, note: "Need-based aid · Top-50 admissions" },
+  { flag: "🇺🇸", name: "USA", tag: "Primary focus", featured: true, note: "Need-based aid · Top-50 admissions" },
   { flag: "🇬🇧", name: "United Kingdom", tag: "UCAS Support", note: "Russell Group · Merit scholarships" },
   { flag: "🇨🇦", name: "Canada", tag: "SDS Visa", note: "U of T · UBC · McGill" },
   { flag: "🇩🇪", name: "Germany", tag: "Free Tuition", note: "TU Munich · RWTH · Heidelberg" },
@@ -27,8 +29,8 @@ export const STATS = [
 export const PROGRAMS = [
   {
     id: "scholarship",
-    icon: "🏆",
-    badge: "⭐ Most Popular",
+    icon: "trophy" satisfies ScholarIconName,
+    badge: "Most popular",
     title: "Full Scholarship Track",
     price: "Custom pricing · Book a call for quote",
     description:
@@ -46,8 +48,8 @@ export const PROGRAMS = [
   },
   {
     id: "general",
-    icon: "🎓",
-    badge: "Standard Path",
+    icon: "graduation-cap" satisfies ScholarIconName,
+    badge: "Standard path",
     title: "General Admission Track",
     price: "Tiered packages · See pricing",
     description:
@@ -65,8 +67,8 @@ export const PROGRAMS = [
   },
   {
     id: "file",
-    icon: "📂",
-    badge: "Quick Start",
+    icon: "folder-open" satisfies ScholarIconName,
+    badge: "Quick start",
     title: "File Opening Service",
     price: "Per-application pricing",
     description:
@@ -85,23 +87,23 @@ export const PROGRAMS = [
 ];
 
 export const SERVICES = [
-  { icon: "🎯", title: "Personalized Pathway Planning", desc: "Tailored country, university and timeline strategy from day one." },
-  { icon: "📝", title: "Essay & SOP Coaching", desc: "Multiple drafts, real feedback, voice that admissions remembers." },
-  { icon: "💸", title: "CSS Profile & ISFAA", desc: "Every field explained. Every document gathered. Done right." },
-  { icon: "📚", title: "College List Building", desc: "Reach, target, safety — calibrated to your profile and finances." },
-  { icon: "👩‍🏫", title: "Teacher Portal Support", desc: "We walk your teachers through recommendation submissions." },
-  { icon: "🧭", title: "Counselor Portal Support", desc: "School counselor section coordination so nothing slips." },
-  { icon: "🛂", title: "F-1 Visa Preparation", desc: "DS-160, SEVIS, financial docs, and full mock interviews." },
-  { icon: "✈️", title: "Pre-Departure & Beyond", desc: "Housing, banking, packing, and your first weeks abroad." },
+  { icon: "target" satisfies ScholarIconName, title: "Personalized Pathway Planning", desc: "Tailored country, university and timeline strategy from day one." },
+  { icon: "pen-line" satisfies ScholarIconName, title: "Essay & SOP Coaching", desc: "Multiple drafts, real feedback, voice that admissions remembers." },
+  { icon: "banknote" satisfies ScholarIconName, title: "CSS Profile & ISFAA", desc: "Every field explained. Every document gathered. Done right." },
+  { icon: "library" satisfies ScholarIconName, title: "College List Building", desc: "Reach, target, safety — calibrated to your profile and finances." },
+  { icon: "school" satisfies ScholarIconName, title: "Teacher Portal Support", desc: "We walk your teachers through recommendation submissions." },
+  { icon: "compass" satisfies ScholarIconName, title: "Counselor Portal Support", desc: "School counselor section coordination so nothing slips." },
+  { icon: "stamp" satisfies ScholarIconName, title: "F-1 Visa Preparation", desc: "DS-160, SEVIS, financial docs, and full mock interviews." },
+  { icon: "luggage" satisfies ScholarIconName, title: "Pre-Departure & Beyond", desc: "Housing, banking, packing, and your first weeks abroad." },
 ];
 
 export const PROCESS = [
-  { n: 1, icon: "💬", title: "Discovery Call", desc: "A free, honest conversation about your goals, profile, and realistic options." },
-  { n: 2, icon: "🧭", title: "Strategy & Roadmap", desc: "Country mix, college list, timeline, and a personalized prep plan." },
-  { n: 3, icon: "📈", title: "Profile Building", desc: "Test prep, extracurricular shaping, and academic positioning." },
-  { n: 4, icon: "📝", title: "Application Preparation", desc: "Essays, forms, portals, financial aid — every part, together, step by step." },
-  { n: 5, icon: "📤", title: "Submit & Follow Up", desc: "On-time submissions, response tracking, and quick follow-ups." },
-  { n: 6, icon: "🎉", title: "Acceptance & Next Steps", desc: "Offer evaluation, aid negotiation, visa, departure." },
+  { n: 1, icon: "message-circle" satisfies ScholarIconName, title: "Discovery Call", desc: "A free, honest conversation about your goals, profile, and realistic options." },
+  { n: 2, icon: "compass" satisfies ScholarIconName, title: "Strategy & Roadmap", desc: "Country mix, college list, timeline, and a personalized prep plan." },
+  { n: 3, icon: "trending-up" satisfies ScholarIconName, title: "Profile Building", desc: "Test prep, extracurricular shaping, and academic positioning." },
+  { n: 4, icon: "file-text" satisfies ScholarIconName, title: "Application Preparation", desc: "Essays, forms, portals, financial aid — every part, together, step by step." },
+  { n: 5, icon: "send" satisfies ScholarIconName, title: "Submit & Follow Up", desc: "On-time submissions, response tracking, and quick follow-ups." },
+  { n: 6, icon: "party-popper" satisfies ScholarIconName, title: "Acceptance & Next Steps", desc: "Offer evaluation, aid negotiation, visa, departure." },
 ];
 
 export const TESTS = [
@@ -141,7 +143,7 @@ export const TESTS = [
   {
     abbr: "TOEFL",
     full: "Test of English as a Foreign Language (iBT)",
-    badge: "🌎 USA · Europe · Global",
+    badge: "USA · Europe · Global",
     accent: "#F59E0B",
     description:
       "TOEFL iBT is widely accepted at US universities. We focus on integrated tasks, note-taking, and academic English — what TOEFL rewards most.",
@@ -157,7 +159,7 @@ export const TESTS = [
   {
     abbr: "DET",
     full: "Duolingo English Test",
-    badge: "⚡ Fast & Affordable",
+    badge: "Fast & affordable",
     accent: "#22C55E",
     description:
       "The modern alternative — taken online in 1 hour, results in 48 hours, accepted by 5,000+ institutions including many top US universities.",
@@ -231,7 +233,7 @@ export const TESTIMONIALS = [
     year: "Class of 2024",
     quote:
       "I had no idea where to start with US college applications. Common App, CSS Profile, financial aid forms — it felt impossible. The team at Scholars Cafe broke everything down for me. My mentor was available whenever I had a question, and we worked through every essay together — five drafts, genuine feedback, real improvement. I ended up getting into a top liberal arts college with a need-based aid package that covers more than half my tuition. It changed my life.",
-    outcome: "💵 50%+ Need-Based Financial Aid",
+    outcome: "50%+ need-based financial aid",
     color: "from-sky to-navy",
   },
   {
@@ -241,7 +243,7 @@ export const TESTIMONIALS = [
     year: "Class of 2024",
     quote:
       "My IELTS score was holding me back. I had the grades, I had the motivation, but I kept scoring Band 6.5 on my own. After just 6 weeks of preparation with Scholars Cafe, I hit Band 7.5. Their speaking mocks were especially helpful — feedback no online course ever gave me. I applied to UK universities and got an offer from my first-choice institution. The visa guidance was incredible — I walked into my appointment completely calm.",
-    outcome: "🎓 IELTS 7.5 · First-Choice Offer",
+    outcome: "IELTS 7.5 · First-choice offer",
     color: "from-fuchsia-500 to-navy",
   },
   {
@@ -251,7 +253,7 @@ export const TESTIMONIALS = [
     year: "Class of 2024",
     quote:
       "CSS Profile and ISFAA looked like another language to me. I was ready to give up on schools that required them. My consultant at Scholars Cafe sat with me for hours, explained every single field, helped me gather the right documents, and reviewed the forms multiple times. The result? Over 70% in need-based aid at a top-50 US university. No Bangladeshi student should miss out because of a form.",
-    outcome: "💵 70%+ Need-Based Aid Awarded",
+    outcome: "70%+ need-based aid awarded",
     color: "from-emerald-500 to-navy",
   },
   {
@@ -261,7 +263,7 @@ export const TESTIMONIALS = [
     year: "Class of 2024",
     quote:
       "I never thought South Korea was an option for me until Scholars Cafe introduced me to the GKS scholarship. They helped me with every part — language assessment, study plan, professor contact emails — everything. I got accepted with a full scholarship: tuition, dormitory, monthly stipend. This is a life I never imagined I could have.",
-    outcome: "🏆 Full GKS Scholarship",
+    outcome: "Full GKS scholarship",
     color: "from-amber-500 to-navy",
   },
 ];
@@ -310,10 +312,10 @@ export const FAQS = [
 ];
 
 export const VALUES = [
-  { icon: "🎯", title: "Expert Mentorship", desc: "Consultants with deep US and global admissions knowledge — not agents, but mentors who care about your outcome." },
-  { icon: "🌐", title: "International Reach", desc: "11+ countries. Hundreds of universities. A network built over years of real-world application experience." },
-  { icon: "💙", title: "Student-First", desc: "Every student gets dedicated attention, honest advice, and real support. We never give generic guidance." },
-  { icon: "🔓", title: "Free Knowledge", desc: "Our blog, social media, and free resources exist because we believe knowledge shouldn't be locked behind a paywall." },
+  { icon: "target" satisfies ScholarIconName, title: "Expert Mentorship", desc: "Consultants with deep US and global admissions knowledge — not agents, but mentors who care about your outcome." },
+  { icon: "globe" satisfies ScholarIconName, title: "International Reach", desc: "11+ countries. Hundreds of universities. A network built over years of real-world application experience." },
+  { icon: "heart" satisfies ScholarIconName, title: "Student-First", desc: "Every student gets dedicated attention, honest advice, and real support. We never give generic guidance." },
+  { icon: "unlock" satisfies ScholarIconName, title: "Free Knowledge", desc: "Our blog, social media, and free resources exist because we believe knowledge shouldn't be locked behind a paywall." },
 ];
 
 export const TEAM = [
@@ -324,10 +326,10 @@ export const TEAM = [
 ];
 
 export const RESOURCES = [
-  { tag: "🇺🇸 USA Guide", icon: "🗺️", title: "USA Application Complete Guide", teaser: "Everything from Common App setup to financial aid forms — a step-by-step walkthrough." },
-  { tag: "💰 Scholarships", icon: "💎", title: "Scholarship Guide for Bangladeshi Students", teaser: "Need-based vs merit-based options, with the universities most generous to internationals." },
-  { tag: "✍️ Essays", icon: "📝", title: "Common App Essays That Get Noticed", teaser: "Brainstorm, write, and edit a story admissions officers will remember." },
-  { tag: "📊 SAT", icon: "📈", title: "SAT Prep Roadmap: 12 Weeks to Target", teaser: "Week-by-week SAT schedule starting from scratch — with free practice resources." },
-  { tag: "🛂 Visa", icon: "✈️", title: "Complete F-1 Student Visa Guide", teaser: "DS-160, SEVIS, interview prep, and the most common mistakes to avoid." },
-  { tag: "🌎 Compare", icon: "⚖️", title: "USA vs UK vs Canada vs Germany", teaser: "Side-by-side comparison of cost, scholarships, careers, and quality of life." },
+  { tag: "🇺🇸 USA Guide", icon: "map" satisfies ScholarIconName, title: "USA Application Complete Guide", teaser: "Everything from Common App setup to financial aid forms — a step-by-step walkthrough." },
+  { tag: "Scholarships", icon: "gem" satisfies ScholarIconName, title: "Scholarship Guide for Bangladeshi Students", teaser: "Need-based vs merit-based options, with the universities most generous to internationals." },
+  { tag: "Essays", icon: "pen-line" satisfies ScholarIconName, title: "Common App Essays That Get Noticed", teaser: "Brainstorm, write, and edit a story admissions officers will remember." },
+  { tag: "SAT", icon: "trending-up" satisfies ScholarIconName, title: "SAT Prep Roadmap: 12 Weeks to Target", teaser: "Week-by-week SAT schedule starting from scratch — with free practice resources." },
+  { tag: "Visa", icon: "plane" satisfies ScholarIconName, title: "Complete F-1 Student Visa Guide", teaser: "DS-160, SEVIS, interview prep, and the most common mistakes to avoid." },
+  { tag: "Compare", icon: "scale" satisfies ScholarIconName, title: "USA vs UK vs Canada vs Germany", teaser: "Side-by-side comparison of cost, scholarships, careers, and quality of life." },
 ];

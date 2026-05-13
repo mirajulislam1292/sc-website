@@ -1,5 +1,6 @@
 import { Reveal, RevealStagger, StaggerItem } from "./Reveal";
 import { SERVICES } from "@/lib/scholars-data";
+import { ScholarIcon } from "./ScholarIcon";
 
 export function Services() {
   return (
@@ -19,8 +20,8 @@ export function Services() {
           {SERVICES.map((s) => (
             <StaggerItem key={s.title}>
               <div className="group h-full rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-1.5 hover:border-sky hover:shadow-card-hover">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-tint text-2xl transition-transform group-hover:scale-110">
-                  {s.icon}
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-tint text-sky-deep transition-transform group-hover:scale-110">
+                  <ScholarIcon name={s.icon} className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 font-display text-lg font-bold text-navy">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">{s.desc}</p>
