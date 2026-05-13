@@ -3,16 +3,17 @@ import { readdirSync, statSync } from 'fs';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import dotenv from 'dotenv';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Load .env file
+dotenv.config({ path: join(dirname(fileURLToPath(import.meta.url)), '..', '.env') });
 
-const FTP_HOST = '82.25.83.46';
-const FTP_USER = 'u814252648';
-const FTP_PORT = 21;
-const FTP_PASS = process.env.FTP_PASS;
-const REMOTE_DIR = 'public_html';
-const LOCAL_DIR = join(__dirname, '..', 'dist', 'client');
+const FTP_HOST = process.env.FTP_HOST || '82.25.83.46';
+const FTP_USER = process.env.FTP_USER || 'u814252648';
+const FTP_PORT = parseInt(process.env.FTP_PORT || '21', 10);
+const FTP_PASS = process.env.FTP_PASSWORD;
+const REMOTE_DIR = process.env.FTP_DIR || 'public_html';
+const LOCAL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'dist', 'client');
 
 if (!FTP_PASS) {
   console.error('❌ Error: FTP_PASS environment variable not set');
