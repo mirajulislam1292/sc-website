@@ -325,11 +325,137 @@ export const TEAM = [
   { initials: "NF", name: "Nabil Faisal", role: "Visa & Departures", bio: "F-1, study permits, and that first month abroad — handled." },
 ];
 
-export const RESOURCES = [
-  { tag: "🇺🇸 USA Guide", icon: "map" satisfies ScholarIconName, title: "USA Application Complete Guide", teaser: "Everything from Common App setup to financial aid forms — a step-by-step walkthrough." },
-  { tag: "Scholarships", icon: "gem" satisfies ScholarIconName, title: "Scholarship Guide for Bangladeshi Students", teaser: "Need-based vs merit-based options, with the universities most generous to internationals." },
-  { tag: "Essays", icon: "pen-line" satisfies ScholarIconName, title: "Common App Essays That Get Noticed", teaser: "Brainstorm, write, and edit a story admissions officers will remember." },
-  { tag: "SAT", icon: "trending-up" satisfies ScholarIconName, title: "SAT Prep Roadmap: 12 Weeks to Target", teaser: "Week-by-week SAT schedule starting from scratch — with free practice resources." },
-  { tag: "Visa", icon: "plane" satisfies ScholarIconName, title: "Complete F-1 Student Visa Guide", teaser: "DS-160, SEVIS, interview prep, and the most common mistakes to avoid." },
-  { tag: "Compare", icon: "scale" satisfies ScholarIconName, title: "USA vs UK vs Canada vs Germany", teaser: "Side-by-side comparison of cost, scholarships, careers, and quality of life." },
+export type ResourceCategory = "Essays" | "Applications" | "Scholarships" | "Test Prep" | "Visa" | "Compare";
+
+export const RESOURCE_CATEGORIES: { id: ResourceCategory; label: string; desc: string }[] = [
+  { id: "Essays", label: "Essays & Personal Statements", desc: "Brainstorm, draft, and revise stories admissions remember." },
+  { id: "Applications", label: "Applications & Strategy", desc: "Common App, UCAS, and country-specific portals — without the panic." },
+  { id: "Scholarships", label: "Scholarships & Financial Aid", desc: "Need-based, merit, and the forms that unlock them." },
+  { id: "Test Prep", label: "Test Prep", desc: "SAT, IELTS, TOEFL, DET — strategies that move the needle." },
+  { id: "Visa", label: "Visa & Pre-Departure", desc: "From DS-160 to your first month abroad." },
+  { id: "Compare", label: "Country & University Compare", desc: "Side-by-side breakdowns to help you choose." },
 ];
+
+export type Resource = {
+  tag: string;
+  category: ResourceCategory;
+  icon: ScholarIconName;
+  title: string;
+  teaser: string;
+  readTime: string;
+  featured?: boolean;
+};
+
+export const RESOURCES: Resource[] = [
+  {
+    tag: "🇺🇸 USA Flagship Guide",
+    category: "Applications",
+    icon: "map",
+    title: "The Complete USA Application Guide for Bangladeshi Students",
+    teaser:
+      "From building a college list and writing essays to CSS Profile, ISFAA, and visa interviews — the only walkthrough you need, written specifically for students applying from Bangladesh.",
+    readTime: "32 min read",
+    featured: true,
+  },
+  {
+    tag: "Essays",
+    category: "Essays",
+    icon: "pen-line",
+    title: "How to Write a Personal Statement That Gets Remembered",
+    teaser:
+      "The Montage and Narrative structures explained, with the prompts that unlock the story only you can tell. Includes a full essay-brainstorm worksheet.",
+    readTime: "18 min read",
+  },
+  {
+    tag: "Essays",
+    category: "Essays",
+    icon: "pen-line",
+    title: "21 Common App Essay Examples (and Why They Worked)",
+    teaser:
+      "Real successful essays broken down line by line — what made the opening hook, where the writer earned trust, and how the ending stuck the landing.",
+    readTime: "24 min read",
+  },
+  {
+    tag: "Scholarships",
+    category: "Scholarships",
+    icon: "gem",
+    title: "The Bangladeshi Student's Scholarship Playbook",
+    teaser:
+      "Universities that meet 100% of demonstrated need for internationals, the merit awards worth applying to, and how to position your file to maximise aid.",
+    readTime: "21 min read",
+    featured: true,
+  },
+  {
+    tag: "Scholarships",
+    category: "Scholarships",
+    icon: "banknote",
+    title: "CSS Profile vs ISFAA: A Field-by-Field Walkthrough",
+    teaser:
+      "Both forms demystified with screenshots, currency-conversion tips, and the fields most Bangladeshi families get wrong on their first attempt.",
+    readTime: "16 min read",
+  },
+  {
+    tag: "Applications",
+    category: "Applications",
+    icon: "library",
+    title: "Building a Smart College List: Reach, Target, Safety",
+    teaser:
+      "The 12-school framework we use with every Scholars Cafe student — calibrated to your academic profile, finances, and risk tolerance.",
+    readTime: "14 min read",
+  },
+  {
+    tag: "Test Prep",
+    category: "Test Prep",
+    icon: "trending-up",
+    title: "SAT Prep Roadmap: 12 Weeks From Diagnostic to Target",
+    teaser:
+      "Week-by-week study schedule starting from a baseline score, with free Khan Academy + Bluebook resources sequenced for maximum gain.",
+    readTime: "12 min read",
+  },
+  {
+    tag: "Test Prep",
+    category: "Test Prep",
+    icon: "trending-up",
+    title: "IELTS Band 7+: The Speaking & Writing Scripts That Work",
+    teaser:
+      "Our examiner-trained playbook for Tasks 1 & 2, plus the speaking framework that turned Band 6.5 students into 7.5 in six weeks.",
+    readTime: "15 min read",
+  },
+  {
+    tag: "Visa",
+    category: "Visa",
+    icon: "plane",
+    title: "F-1 Student Visa: The Complete Interview Prep Guide",
+    teaser:
+      "DS-160 walkthrough, SEVIS payment, document checklist, and the 30 most-asked questions at the Dhaka US Embassy — with strong sample answers.",
+    readTime: "20 min read",
+  },
+  {
+    tag: "Compare",
+    category: "Compare",
+    icon: "scale",
+    title: "USA vs UK vs Canada vs Germany: Which Is Right For You?",
+    teaser:
+      "True 4-year cost, scholarship reality, work rights after graduation, and quality-of-life — compared honestly for a Bangladeshi applicant in 2025.",
+    readTime: "17 min read",
+  },
+  {
+    tag: "Applications",
+    category: "Applications",
+    icon: "file-text",
+    title: "Recommendation Letters: How to Brief Your Teachers",
+    teaser:
+      "The exact one-page brief our students hand to teachers and counselors so the letters land with specific stories and concrete strengths.",
+    readTime: "9 min read",
+  },
+  {
+    tag: "Visa",
+    category: "Visa",
+    icon: "luggage",
+    title: "Pre-Departure Checklist: Your First 30 Days Abroad",
+    teaser:
+      "Banking, SIMs, dorms, course registration, and the small things nobody warns you about — built for first-time international students.",
+    readTime: "11 min read",
+  },
+];
+
