@@ -45,7 +45,7 @@ async function uploadDir(client, localPath, remotePath) {
     const remoteFile = remotePath && remotePath !== '.' ? `${remotePath}/${dir}` : dir;
     console.log(`  [DIR] ${remoteFile}`);
     try {
-      await client.mkdir(remoteFile);
+      await client.send('MKD ' + remoteFile);
     } catch (e) {
       console.log(`     (${e.message})`);
     }
