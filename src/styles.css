@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap");
 
@@ -115,6 +116,9 @@
   }
   html {
     scroll-behavior: smooth;
+  }
+  section[id] {
+    scroll-margin-top: 80px;
   }
   body {
     background-color: var(--color-background);
