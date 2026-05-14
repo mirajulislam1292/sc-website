@@ -78,8 +78,8 @@ export function WorldMap() {
             >
               <ZoomableGroup center={[15, 25]} zoom={1} minZoom={1} maxZoom={4}>
                 <Geographies geography={GEO_URL}>
-                  {({ geographies }) =>
-                    geographies.map((geo) => {
+                  {({ geographies }: { geographies: any[] }) =>
+                    geographies.map((geo: any) => {
                       const iso = geo.properties.iso_a3 || geo.id;
                       const dest = ISO_TO_DESTINATION[iso];
                       const isActive = !!dest;
