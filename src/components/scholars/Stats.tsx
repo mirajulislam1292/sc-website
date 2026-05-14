@@ -4,22 +4,30 @@ import { STATS } from "@/lib/scholars-data";
 
 export function Stats() {
   return (
-    <section className="border-b border-border bg-white py-16 md:py-20">
-      <div className="mx-auto max-w-[1280px] px-5 md:px-8">
+    <section className="bg-[var(--navy-deep)] py-20 md:py-28">
+      <div className="mx-auto max-w-[1320px] px-5 md:px-10">
         <Reveal>
-          <div className="grid grid-cols-2 divide-x divide-border md:grid-cols-4">
-            {STATS.map((s, i) => (
-              <div key={i} className="px-4 text-center">
-                <div className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold leading-none text-navy">
-                  <CountUp end={s.value} suffix={s.suffix} text={s.text} />
-                </div>
-                <div className="mt-3 text-[12px] font-medium uppercase tracking-[0.08em] text-slate-600">
-                  {s.label}
-                </div>
-              </div>
-            ))}
+          <div className="mb-12 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-light">
+            <span className="h-px w-10 bg-sky-light/60" />
+            By the numbers
           </div>
         </Reveal>
+
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4 md:gap-x-12">
+          {STATS.map((s, i) => (
+            <Reveal key={i} delay={i * 0.08}>
+              <div className="relative">
+                <div className="font-display text-[clamp(3.5rem,7vw,6rem)] font-extrabold leading-none text-white">
+                  <CountUp end={s.value} suffix={s.suffix} text={s.text} />
+                </div>
+                <div className="mt-4 max-w-[180px] text-[13px] uppercase tracking-[0.16em] text-white/55">
+                  {s.label}
+                </div>
+                <div className="mt-6 h-px w-12 bg-sky" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
