@@ -26,7 +26,7 @@ export const STATS = [
   { value: 0, suffix: "Free", label: "Initial Consultation", text: "Free" },
 ];
 
-export const PROGRAMS = [
+export const PROGRAMS: { id: string; icon: ScholarIconName; badge: string; title: string; price: string; description: string; features: string[]; cta: string; featured: boolean }[] = [
   {
     id: "scholarship",
     icon: "trophy" satisfies ScholarIconName,
@@ -86,7 +86,7 @@ export const PROGRAMS = [
   },
 ];
 
-export const SERVICES = [
+export const SERVICES: { icon: ScholarIconName; title: string; desc: string }[] = [
   { icon: "target" satisfies ScholarIconName, title: "Personalized Pathway Planning", desc: "Tailored country, university and timeline strategy from day one." },
   { icon: "pen-line" satisfies ScholarIconName, title: "Essay & SOP Coaching", desc: "Multiple drafts, real feedback, voice that admissions remembers." },
   { icon: "banknote" satisfies ScholarIconName, title: "CSS Profile & ISFAA", desc: "Every field explained. Every document gathered. Done right." },
@@ -97,7 +97,7 @@ export const SERVICES = [
   { icon: "luggage" satisfies ScholarIconName, title: "Pre-Departure & Beyond", desc: "Housing, banking, packing, and your first weeks abroad." },
 ];
 
-export const PROCESS = [
+export const PROCESS: { n: number; icon: ScholarIconName; title: string; desc: string }[] = [
   { n: 1, icon: "message-circle" satisfies ScholarIconName, title: "Discovery Call", desc: "A free, honest conversation about your goals, profile, and realistic options." },
   { n: 2, icon: "compass" satisfies ScholarIconName, title: "Strategy & Roadmap", desc: "Country mix, college list, timeline, and a personalized prep plan." },
   { n: 3, icon: "trending-up" satisfies ScholarIconName, title: "Profile Building", desc: "Test prep, extracurricular shaping, and academic positioning." },
@@ -311,7 +311,7 @@ export const FAQS = [
   },
 ];
 
-export const VALUES = [
+export const VALUES: { icon: ScholarIconName; title: string; desc: string }[] = [
   { icon: "target" satisfies ScholarIconName, title: "Expert Mentorship", desc: "Consultants with deep US and global admissions knowledge — not agents, but mentors who care about your outcome." },
   { icon: "globe" satisfies ScholarIconName, title: "International Reach", desc: "11+ countries. Hundreds of universities. A network built over years of real-world application experience." },
   { icon: "heart" satisfies ScholarIconName, title: "Student-First", desc: "Every student gets dedicated attention, honest advice, and real support. We never give generic guidance." },
