@@ -1,65 +1,90 @@
 import { Reveal, RevealStagger, StaggerItem } from "./Reveal";
-import { COUNTRIES } from "@/lib/scholars-data";
-import { ArrowRight, Globe, Star } from "lucide-react";
-import { WA_LINK } from "@/lib/scholars-data";
+import { COUNTRIES, WA_LINK } from "@/lib/scholars-data";
+import { ArrowUpRight } from "lucide-react";
 
 export function Destinations() {
+  const featured = COUNTRIES.find((c) => c.featured)!;
+  const others = COUNTRIES.filter((c) => !c.featured);
+
   return (
-    <section id="destinations" className="bg-sky-soft py-24 md:py-32">
-      <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-[0.15em] text-sky">
-            <Globe className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
-            Global reach
-          </span>
-          <h2 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-navy">
-            Study in Your Dream Country
-          </h2>
-          <p className="mt-5 text-[17px] leading-relaxed text-slate-600">
-            We provide expert guidance for university admissions in 11+ countries. Our deepest expertise is USA admissions — where we help students land at elite universities with need-based scholarships.
-          </p>
+    <section id="destinations" className="bg-background py-24 md:py-32">
+      <div className="mx-auto max-w-[1320px] px-5 md:px-10">
+        <Reveal>
+          <div className="grid items-end gap-8 md:grid-cols-[1fr_auto] md:gap-16">
+            <div>
+              <span className="kicker">Global reach · 11 countries</span>
+              <h2 className="mt-5 editorial-h2">
+                Choose a country.
+                <br />
+                <span className="italic font-light text-sky" style={{ fontFamily: "Georgia, serif" }}>
+                  We'll handle the rest.
+                </span>
+              </h2>
+            </div>
+            <p className="max-w-md text-[15px] leading-relaxed text-muted-foreground">
+              Our deepest expertise is the USA — where Bangladeshi students consistently
+              earn need-based scholarships at top liberal arts colleges. We also support
+              applications across Europe, Asia, and beyond.
+            </p>
+          </div>
         </Reveal>
 
-        <RevealStagger className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
-          {COUNTRIES.map((c) => (
+        {/* Featured country — large editorial card */}
+        <Reveal delay={0.1}>
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-14 grid overflow-hidden rounded-[28px] border border-border bg-gradient-to-br from-navy via-midnight to-[#0369a1] p-8 text-white transition-all hover:-translate-y-1 hover:shadow-card-hover md:grid-cols-[1fr_1.2fr] md:p-12"
+          >
+            <div className="flex flex-col justify-between gap-8">
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold">
+                  ★ Primary focus
+                </div>
+                <div className="mt-6 text-8xl md:text-9xl">{featured.flag}</div>
+              </div>
+              <div className="font-display text-5xl font-extrabold md:text-6xl">
+                {featured.name}
+              </div>
+            </div>
+            <div className="flex flex-col justify-between gap-8 border-t border-white/15 pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-0">
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-light">
+                  {featured.tag}
+                </div>
+                <p className="mt-4 text-2xl font-light leading-snug text-white/85 md:text-3xl">
+                  {featured.note}. We've built our practice around helping Bangladeshi
+                  students unlock 50–100% need-based aid at top US universities.
+                </p>
+              </div>
+              <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-sky-light">
+                Explore USA pathway
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+              </div>
+            </div>
+          </a>
+        </Reveal>
+
+        {/* Other countries — minimal editorial grid */}
+        <RevealStagger className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-[28px] border border-border bg-border md:grid-cols-3 lg:grid-cols-4">
+          {others.map((c) => (
             <StaggerItem key={c.name}>
-              <div
-                className={`group relative h-full overflow-hidden rounded-3xl border bg-white p-7 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover ${
-                  c.featured
-                    ? "border-gold/60 ring-1 ring-gold/30"
-                    : "border-border hover:border-sky"
-                }`}
-              >
-                {c.featured && (
-                  <div className="absolute right-3 top-3 rounded-full bg-gold/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-gold-deep">
-                    Primary
-                  </div>
-                )}
-                <div className="text-5xl">{c.flag}</div>
-                <div className="mt-4 font-display text-base font-bold text-navy">{c.name}</div>
-                <div className="mt-2 text-[13px] leading-snug text-slate-500">{c.note}</div>
-                <div className="mt-4 inline-flex items-center gap-1 rounded-full bg-sky-tint px-3 py-1 text-[11px] font-semibold text-sky-deep">
-                  {c.featured && <Star className="h-3 w-3 fill-gold text-gold-deep" aria-hidden />}
+              <div className="group relative h-full bg-card p-7 transition-colors hover:bg-secondary">
+                <div className="flex items-start justify-between">
+                  <span className="text-4xl">{c.flag}</span>
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+                </div>
+                <h3 className="mt-8 font-display text-xl font-bold text-foreground">
+                  {c.name}
+                </h3>
+                <div className="mt-2 text-[13px] text-muted-foreground">{c.note}</div>
+                <div className="mt-5 inline-block border-t border-sky pt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-sky">
                   {c.tag}
                 </div>
               </div>
             </StaggerItem>
           ))}
-          <StaggerItem>
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-full flex-col items-center justify-center rounded-3xl bg-navy p-7 text-center text-white transition-all hover:-translate-y-2 hover:bg-midnight"
-            >
-              <Globe className="mx-auto h-12 w-12 text-sky-light" strokeWidth={1.25} aria-hidden />
-              <div className="mt-4 font-display text-base font-bold">More on request</div>
-              <div className="mt-2 text-[13px] text-white/70">Ask about your preferred destination</div>
-              <div className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-sky-light">
-                Contact Us <ArrowRight className="h-3.5 w-3.5" />
-              </div>
-            </a>
-          </StaggerItem>
         </RevealStagger>
       </div>
     </section>

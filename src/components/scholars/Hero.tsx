@@ -1,201 +1,170 @@
 import { motion } from "motion/react";
-import { Phone, ArrowRight, Star, Trophy, Globe } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { WA_LINK } from "@/lib/scholars-data";
+
+const TICKER = [
+  "Harvard",
+  "MIT",
+  "Stanford",
+  "UCL",
+  "TU Munich",
+  "Yonsei",
+  "U of Toronto",
+  "Imperial",
+  "Amherst",
+  "KAIST",
+  "Williams",
+  "Heidelberg",
+  "Edinburgh",
+  "KTH",
+  "McGill",
+];
 
 export function Hero() {
   return (
-    <section id="top" className="relative isolate min-h-screen overflow-hidden bg-hero-gradient pt-24">
-      {/* Particle / star field */}
+    <section
+      id="top"
+      className="relative isolate overflow-hidden bg-[var(--navy-deep)] pt-28"
+    >
+      {/* atmospheric background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(14,165,233,0.18),transparent_50%),radial-gradient(circle_at_80%_60%,rgba(125,211,252,0.12),transparent_55%)]" />
-        {Array.from({ length: 60 }).map((_, i) => (
-          <span
-            key={i}
-            className="absolute block h-1 w-1 rounded-full bg-sky-light/60 animate-pulse-dot"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 4}s`,
-              animationDuration: `${2 + Math.random() * 4}s`,
-              opacity: 0.2 + Math.random() * 0.7,
-            }}
-          />
-        ))}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(14,165,233,0.22),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(125,211,252,0.12),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
       </div>
 
-      {/* Grid lines for depth */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]" />
+      <div className="mx-auto max-w-[1320px] px-5 md:px-10">
+        {/* eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-light"
+        >
+          <span className="h-px w-10 bg-sky-light/60" />
+          <Sparkles className="h-3 w-3" />
+          Bangladesh · Est. 2020 · Trusted by 100+ Students
+        </motion.div>
 
-      <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-5 pb-24 pt-16 md:px-8 lg:grid-cols-[1.2fr_1fr]">
-        {/* LEFT */}
-        <div>
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-sky/40 bg-sky/15 px-4 py-1.5 text-[12px] font-semibold uppercase tracking-[0.06em] text-sky-light"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            Bangladesh's #1 Study Abroad Consultancy
-          </motion.div>
-
-          <h1 className="mt-6 font-display text-balance text-[clamp(3rem,6.5vw,5.5rem)] font-extrabold leading-[1.05] text-white">
-            {["Your Dream", "University", "Starts Here."].map((line, i) => (
+        {/* editorial headline */}
+        <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
+          <div>
+            <h1 className="font-display text-[clamp(2.75rem,8vw,7rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-white">
+              {["Where", "ambition", "meets"].map((word, i) => (
+                <motion.span
+                  key={word}
+                  initial={{ opacity: 0, y: 80 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 + i * 0.08, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="block"
+                >
+                  {word}
+                </motion.span>
+              ))}
               <motion.span
-                key={line}
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 80 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35 + i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="block"
+                transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="block italic font-light text-sky-light"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
-                {line === "Starts Here." ? (
-                  <>
-                    Starts Here<span className="text-sky">.</span>
-                  </>
-                ) : line === "University" ? (
-                  <span className="relative inline-block">
-                    {line}
-                    <motion.svg
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
-                      viewBox="0 0 280 12"
-                      className="absolute -bottom-2 left-0 h-3 w-full"
-                      fill="none"
-                    >
-                      <motion.path
-                        d="M2 8 Q70 2 140 6 T278 4"
-                        stroke="#0EA5E9"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                      />
-                    </motion.svg>
-                  </span>
-                ) : (
-                  line
-                )}
+                acceptance.
               </motion.span>
-            ))}
-          </h1>
+            </h1>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            className="mt-7 max-w-[540px] text-lg leading-[1.75] text-white/80"
-          >
-            We guide ambitious Bangladeshi students from application to acceptance at top universities worldwide — with expert mentorship, scholarship strategies, and real human support. USA-focused. Globally trusted.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.5 }}
-            className="mt-9 flex flex-wrap items-center gap-4"
-          >
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-sky px-8 py-4 text-base font-bold text-white transition-all hover:-translate-y-1 hover:bg-[#0284c7] hover:shadow-button"
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="mt-10 max-w-xl text-[17px] leading-[1.7] text-white/70"
             >
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              <Phone className="h-5 w-5" /> Book a Free Call
-            </a>
-            <a
-              href="#programs"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-white/40 px-8 py-4 text-base font-semibold text-white transition-all hover:border-white/80 hover:bg-white/10"
-            >
-              Explore Programs <ArrowRight className="h-5 w-5" />
-            </a>
-          </motion.div>
+              We mentor ambitious Bangladeshi students from a first conversation to an
+              acceptance letter — covering applications, scholarships, and the entire
+              admissions journey across 11+ countries.
+            </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.3 }}
-            className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/60"
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.85, duration: 0.5 }}
+              className="mt-10 flex flex-wrap items-center gap-4"
+            >
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 rounded-full bg-sky px-7 py-4 text-[15px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0284c7] hover:shadow-button"
+              >
+                Book a free strategy call
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+              </a>
+              <a
+                href="#programs"
+                className="group inline-flex items-center gap-2 px-2 py-4 text-[15px] font-semibold text-white"
+              >
+                <span className="border-b border-white/40 pb-0.5 transition-colors group-hover:border-white">
+                  Explore programs
+                </span>
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* right column — editorial stat block */}
+          <motion.aside
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="flex flex-col justify-end gap-8 border-l border-white/10 pl-8 lg:pl-12"
           >
-            <div className="flex items-center gap-1 text-gold">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-current" />
+            <div>
+              <div className="font-display text-7xl font-extrabold leading-none text-white">
+                100<span className="text-sky">+</span>
+              </div>
+              <div className="mt-3 text-sm uppercase tracking-[0.18em] text-white/55">
+                Students placed worldwide
+              </div>
+            </div>
+            <div className="border-t border-white/10 pt-8">
+              <div className="font-display text-7xl font-extrabold leading-none text-white">
+                11<span className="text-sky">+</span>
+              </div>
+              <div className="mt-3 text-sm uppercase tracking-[0.18em] text-white/55">
+                Countries · USA · UK · DE
+              </div>
+            </div>
+            <p className="border-t border-white/10 pt-8 text-[15px] leading-relaxed text-white/65">
+              <span className="font-display text-2xl text-white">"</span>
+              Real mentors. Honest advice. The forms, essays, and quiet 1 a.m. WhatsApp
+              messages — all of it, together.
+            </p>
+          </motion.aside>
+        </div>
+
+        {/* university ticker */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="mt-24 border-t border-white/10 pb-10 pt-8"
+        >
+          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45">
+            <span className="h-px w-10 bg-white/30" />
+            Where our students are heading
+          </div>
+          <div className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
+            <div className="flex w-max animate-marquee gap-12">
+              {[...TICKER, ...TICKER].map((u, i) => (
+                <span
+                  key={i}
+                  className="font-display whitespace-nowrap text-2xl font-bold text-white/30 hover:text-white/80 md:text-3xl"
+                >
+                  {u}
+                </span>
               ))}
             </div>
-            <span>Trusted by 100+ Students</span>
-            <span className="opacity-50">·</span>
-            <span>11+ Countries</span>
-            <span className="opacity-50">·</span>
-            <span>Scholarship Track</span>
-          </motion.div>
-        </div>
-
-        {/* RIGHT — floating cards */}
-        <div className="relative hidden h-[520px] lg:block">
-          <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 animate-glow-pulse rounded-full bg-[radial-gradient(circle,rgba(14,165,233,0.35)_0%,transparent_70%)]" />
-
-          <FloatCard
-            className="absolute right-4 top-6 animate-float"
-            initial={{ opacity: 0, x: 60 }}
-            delay={0.6}
-          >
-            <Trophy className="h-8 w-8 text-gold" strokeWidth={1.5} aria-hidden />
-            <div className="mt-2">
-              <div className="font-display text-base font-bold text-white">Scholarship Track</div>
-              <div className="mt-1 text-xs text-white/70">Fully funded pathways available</div>
-            </div>
-          </FloatCard>
-
-          <FloatCard
-            className="absolute left-2 top-1/2 -translate-y-1/2 animate-float-delay-2"
-            initial={{ opacity: 0, x: -60 }}
-            delay={0.9}
-          >
-            <div className="flex items-center gap-2 text-sm font-semibold text-white">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" /> Free Consultation
-            </div>
-            <div className="mt-1 text-xs text-white/70">No commitment needed</div>
-          </FloatCard>
-
-          <FloatCard
-            className="absolute bottom-6 right-12 animate-float-delay-1"
-            initial={{ opacity: 0, x: 60 }}
-            delay={1.2}
-          >
-            <Globe className="h-8 w-8 text-sky-light" strokeWidth={1.5} aria-hidden />
-            <div className="mt-2">
-              <div className="font-display text-base font-bold text-white">11+ Countries</div>
-              <div className="mt-1 text-xs text-white/70">Worldwide university network</div>
-            </div>
-          </FloatCard>
-        </div>
+          </div>
+        </motion.div>
       </div>
-
     </section>
-  );
-}
-
-function FloatCard({
-  children,
-  className = "",
-  initial,
-  delay,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  initial: { opacity: number; x: number };
-  delay: number;
-}) {
-  return (
-    <motion.div
-      initial={initial}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay, duration: 0.6 }}
-      className={className}
-    >
-      <div className="glass rounded-2xl px-5 py-4 shadow-2xl shadow-black/30">{children}</div>
-    </motion.div>
   );
 }
