@@ -163,6 +163,7 @@ export function WorldMap() {
                 })}
               </ZoomableGroup>
             </ComposableMap>
+            )}
           </div>
 
           {/* legend */}
