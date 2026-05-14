@@ -16,82 +16,143 @@ const LOCAL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'dist', 'c
 
 if (!FTP_PASS) {
   console.error('[ERROR] FTP_PASS environment variable not set');
-  console.error('Usage: FTP_PASS=your_password npm run deploy');
-  console.error('Or set FTP_PASSWORD in .env file');
   process.exit(1);
 }
+
+const FTP_CONFIG = {
+  host: FTP_HOST,
+  user: FTP_USER,
+  password: FTP_PASS,
+  port: FTP_PORT,
+};
 
 async function generateIndexHtml(clientDir) {
   const serverEntryPath = join(dirname(fileURLToPath(import.meta.url)), '..', 'dist', 'server', 'index.js');
   const serverEntry = await import(pathToFileURL(serverEntryPath).href);
   const response = await serverEntry.default.fetch(new Request('http://localhost/'));
-
-  if (!response.ok) {
-    throw new Error(`SSR render failed with status ${response.status}`);
-  }
-
+  if (!response.ok) throw new Error(`SSR render failed with status ${response.status}`);
   const html = await response.text();
-  const indexPath = join(clientDir, 'index.html');
-  writeFileSync(indexPath, html);
+  writeFileSync(join(clientDir, 'index.html'), html);
   console.log('[OK] Generated SSR index.html');
 }
 
-async function uploadDir(client, localPath, remotePath) {
-  const files = readdirSync(localPath);
-  
-  // Create all directories first
-  const dirs = files.filter(f => statSync(join(localPath, f)).isDirectory());
-  for (const dir of dirs) {
-    const remoteFile = remotePath && remotePath !== '.' ? `${remotePath}/${dir}` : dir;
-    console.log(`  [DIR] ${remoteFile}`);
+function createClient() {
+  const client = new Client();
+  client.ftp.verbose = false;
+  // Extend socket timeout to 5 minutes to handle large file uploads
+  client.ftp.socket.setTimeout(300000);
+  return client;
+}
+
+async function connect(client) {
+  await client.access(FTP_CONFIG);
+}
+
+// Delete a remote file silently (used to clean up orphaned .in. temp files)
+async function tryDelete(client, remotePath) {
+  try { await client.remove(remotePath); } catch (_) {}
+}
+
+// Upload a single file. On .in. temp conflict, clean up and retry with a fresh connection.
+async function uploadFile(localFile, remoteFile, retries = 3) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const client = createClient();
     try {
-      await client.send('MKD ' + remoteFile);
-    } catch (e) {
-      console.log(`     (${e.message})`);
-    }
-  }
-  
-  // Upload files
-  for (const file of files) {
-    const localFile = join(localPath, file);
-    const remoteFile = remotePath && remotePath !== '.' ? `${remotePath}/${file}` : file;
-    const stat = statSync(localFile);
-    
-    if (stat.isDirectory()) {
-      // Recursively upload directory contents
-      await uploadDir(client, localFile, remoteFile);
-    } else {
-      console.log(`  [UP] ${remoteFile}`);
+      await connect(client);
       await client.uploadFrom(localFile, remoteFile);
+      return; // success
+    } catch (e) {
+      const msg = e.message || '';
+      const isTempFileConflict = msg.includes('.in.');
+
+      if (isTempFileConflict) {
+        console.log(`  [CLEANUP] Temp file conflict on ${remoteFile}`);
+        // Try to clean up guessed temp path
+        const dir = remoteFile.includes('/') ? remoteFile.substring(0, remoteFile.lastIndexOf('/')) : '';
+        const base = remoteFile.includes('/') ? remoteFile.substring(remoteFile.lastIndexOf('/') + 1) : remoteFile;
+        const tempPath = (dir ? dir + '/' : '') + '.in.' + base + '.';
+        const cleanClient = createClient();
+        try {
+          await connect(cleanClient);
+          await tryDelete(cleanClient, tempPath);
+        } finally {
+          cleanClient.close();
+        }
+      }
+
+      if (attempt === retries) {
+        throw new Error(`Failed to upload ${remoteFile} after ${retries} attempts: ${msg}`);
+      }
+
+      console.log(`  [RETRY ${attempt}/${retries}] ${remoteFile}`);
+    } finally {
+      client.close();
     }
   }
 }
 
-async function deploy() {
-  const client = new Client();
-  
+async function ensureDir(client, remotePath) {
   try {
-    // Generate index.html based on actual assets
+    await client.send('MKD ' + remotePath);
+  } catch (_) {
+    // Ignore — directory likely already exists (550)
+  }
+}
+
+async function collectFiles(localPath, remotePath, list = []) {
+  const entries = readdirSync(localPath);
+
+  // Collect directories
+  const dirs = entries.filter(f => statSync(join(localPath, f)).isDirectory());
+  for (const dir of dirs) {
+    const rf = remotePath && remotePath !== '.' ? `${remotePath}/${dir}` : dir;
+    list.push({ type: 'dir', remotePath: rf });
+    await collectFiles(join(localPath, dir), rf, list);
+  }
+
+  // Collect files
+  for (const file of entries) {
+    const lf = join(localPath, file);
+    const rf = remotePath && remotePath !== '.' ? `${remotePath}/${file}` : file;
+    if (!statSync(lf).isDirectory()) {
+      list.push({ type: 'file', localPath: lf, remotePath: rf });
+    }
+  }
+
+  return list;
+}
+
+async function deploy() {
+  try {
     await generateIndexHtml(LOCAL_DIR);
-    
+
     console.log('[...] Connecting to Hostinger FTP...');
-    await client.access({
-      host: FTP_HOST,
-      user: FTP_USER,
-      password: FTP_PASS,
-      port: FTP_PORT,
-    });
-    
-    console.log(`[...] Uploading to ${REMOTE_DIR}...`);
-    await uploadDir(client, LOCAL_DIR, REMOTE_DIR);
-    
+
+    // First pass: create all directories using one connection
+    const client = createClient();
+    await connect(client);
+    console.log('[...] Creating remote directories...');
+    const allItems = await collectFiles(LOCAL_DIR, REMOTE_DIR);
+    const dirs = allItems.filter(i => i.type === 'dir');
+    for (const d of dirs) {
+      console.log(`  [DIR] ${d.remotePath}`);
+      await ensureDir(client, d.remotePath);
+    }
+    client.close();
+
+    // Second pass: upload each file with its own fresh connection (avoids keepalive conflicts)
+    const files = allItems.filter(i => i.type === 'file');
+    console.log(`[...] Uploading ${files.length} files...`);
+    for (const f of files) {
+      console.log(`  [UP] ${f.remotePath}`);
+      await uploadFile(f.localPath, f.remotePath);
+    }
+
     console.log('[OK] Deploy complete!');
     process.exit(0);
   } catch (err) {
     console.error('[ERROR] Deploy failed:', err.message);
     process.exit(1);
-  } finally {
-    client.close();
   }
 }
 
