@@ -5,7 +5,7 @@ import { ScholarIcon } from "./ScholarIcon";
 
 export function Resources() {
   return (
-    <section id="resources" className="bg-[#F8FAFC] py-24 md:py-32">
+    <section id="resources" className="bg-slate-50 py-24 md:py-32">
       <div className="mx-auto max-w-[1280px] px-5 md:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-bold uppercase tracking-[0.15em] text-sky">Knowledge Hub</span>
