@@ -34,7 +34,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-[var(--navy-deep)] pt-28"
+      className="relative isolate overflow-hidden bg-[var(--navy-deep)] pt-24 md:pt-28"
     >
       {/* full-bleed cinematic campus photo */}
       <motion.div
@@ -63,7 +63,7 @@ export function Hero() {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-light"
+          className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-light md:text-[11px] md:tracking-[0.22em]"
         >
           <span className="h-px w-10 bg-sky-light/60" />
           <Sparkles className="h-3 w-3" />
@@ -71,18 +71,18 @@ export function Hero() {
         </motion.div>
 
         {/* editorial headline */}
-        <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
+        <div className="mt-8 grid grid-cols-1 gap-10 lg:mt-10 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
           <div>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="mb-4 italic text-xl text-sky-light/90"
+              className="mb-4 italic text-lg text-sky-light/90 md:text-xl"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               Thousands Apply. Few Stand Out.
             </motion.p>
-            <h1 className="font-display text-[clamp(2.75rem,8vw,7rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-white [text-shadow:0_2px_30px_rgba(0,0,0,0.45)]">
+            <h1 className="font-display text-[clamp(2.35rem,14vw,7rem)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white [text-shadow:0_2px_30px_rgba(0,0,0,0.45)] md:text-[clamp(2.75rem,8vw,7rem)] md:leading-[0.92]">
               {["Where", "ambition", "meets"].map((word, i) => (
                 <motion.span
                   key={word}
@@ -109,7 +109,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.6 }}
-              className="mt-10 max-w-xl text-[17px] leading-[1.7] text-white/80 [text-shadow:0_1px_12px_rgba(0,0,0,0.35)]"
+              className="mt-6 max-w-xl text-[16px] leading-[1.7] text-white/80 [text-shadow:0_1px_12px_rgba(0,0,0,0.35)] md:mt-10 md:text-[17px]"
             >
               We mentor ambitious Bangladeshi students from a first conversation to an
               acceptance letter — covering applications, scholarships, and the entire
@@ -120,20 +120,20 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.85, duration: 0.5 }}
-              className="mt-10 flex flex-wrap items-center gap-4"
+              className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center md:mt-10 md:gap-4"
             >
               <a
                 href={WA_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 rounded-full bg-sky px-7 py-4 text-[15px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0284c7] hover:shadow-button"
+                className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-sky px-7 py-4 text-[15px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0284c7] hover:shadow-button sm:w-auto"
               >
                 Book a free strategy call
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
               </a>
               <a
                 href="#programs"
-                className="group inline-flex items-center gap-2 px-2 py-4 text-[15px] font-semibold text-white"
+                className="group inline-flex w-full items-center justify-center gap-2 px-2 py-3 text-[15px] font-semibold text-white sm:w-auto sm:py-4"
               >
                 <span className="border-b border-white/40 pb-0.5 transition-colors group-hover:border-white">
                   Explore programs
@@ -141,6 +141,25 @@ export function Hero() {
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </a>
             </motion.div>
+
+            <div className="mt-8 grid grid-cols-2 gap-3 lg:hidden">
+              <div className="rounded-3xl border border-white/15 bg-white/5 p-4 text-white backdrop-blur-sm">
+                <div className="font-display text-3xl font-extrabold leading-none">
+                  100<span className="text-sky">+</span>
+                </div>
+                <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-white/65">
+                  Students placed worldwide
+                </div>
+              </div>
+              <div className="rounded-3xl border border-white/15 bg-white/5 p-4 text-white backdrop-blur-sm">
+                <div className="font-display text-3xl font-extrabold leading-none">
+                  11<span className="text-sky">+</span>
+                </div>
+                <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-white/65">
+                  Countries covered
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* right column — editorial stat block */}
@@ -148,7 +167,7 @@ export function Hero() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
-            className="flex flex-col justify-end gap-8 border-l border-white/15 pl-8 backdrop-blur-[2px] lg:pl-12"
+            className="hidden flex-col justify-end gap-8 border-l border-white/15 pl-8 backdrop-blur-[2px] lg:flex lg:pl-12"
           >
             <div>
               <div className="font-display text-7xl font-extrabold leading-none text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
@@ -179,18 +198,18 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="mt-24 border-t border-white/15 pb-10 pt-8"
+          className="mt-16 border-t border-white/15 pb-8 pt-8 md:mt-24 md:pb-10"
         >
           <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55">
             <span className="h-px w-10 bg-white/30" />
             Where our students are heading
           </div>
           <div className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
-            <div className="flex w-max animate-marquee gap-12">
+            <div className="flex w-max animate-marquee gap-8 md:gap-12">
               {[...TICKER, ...TICKER].map((u, i) => (
                 <span
                   key={i}
-                  className="font-display whitespace-nowrap text-2xl font-bold text-white/40 hover:text-white/90 md:text-3xl"
+                  className="font-display whitespace-nowrap text-xl font-bold text-white/40 hover:text-white/90 md:text-3xl"
                 >
                   {u}
                 </span>

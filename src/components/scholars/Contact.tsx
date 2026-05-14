@@ -37,7 +37,7 @@ export function Contact() {
             <div>
               <div className="font-display text-lg font-bold text-navy">Follow Our Journey</div>
               <p className="text-sm text-slate-500">Weekly tips, scholarships, and student wins on social.</p>
-              <div className="mt-4 flex gap-3">
+              <div className="mt-4 flex flex-wrap gap-3">
                 <Social href="https://www.facebook.com/profile.php?id=61571394902795" label="Facebook"><Facebook className="h-5 w-5" /></Social>
                 <Social href="https://www.instagram.com/scholars_cafe_/" label="Instagram"><Instagram className="h-5 w-5" /></Social>
                 <Social href="https://www.linkedin.com/company/scholars-cafe09/" label="LinkedIn"><Linkedin className="h-5 w-5" /></Social>
@@ -149,7 +149,7 @@ function Social({ href, label, children }: { href: string; label: string; childr
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-white text-slate-600 transition-all hover:scale-110 hover:border-sky hover:bg-sky hover:text-white"
+      className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-border bg-white text-slate-600 transition-all hover:scale-110 hover:border-sky hover:bg-sky hover:text-white"
     >
       {children}
     </a>

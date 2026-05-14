@@ -69,8 +69,18 @@ export function WorldMap() {
           </p>
         </div>
 
+        <div className="mt-12 rounded-[28px] border border-white/10 bg-gradient-to-b from-[#0b1f44] to-[#07142a] p-6 shadow-2xl md:hidden">
+          <div className="kicker text-sky-light">Mobile view</div>
+          <h3 className="mt-4 font-display text-3xl font-extrabold text-white">
+            Explore destinations without clipping.
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-white/70">
+            The interactive world map is available on larger screens. On mobile, use the country chips below to open each destination dossier.
+          </p>
+        </div>
+
         {/* the map */}
-        <div className="relative mt-12 overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-b from-[#0b1f44] to-[#07142a] shadow-2xl">
+        <div className="relative mt-12 hidden overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-b from-[#0b1f44] to-[#07142a] shadow-2xl md:block">
           <div className="aspect-[16/9] w-full">
             {mounted && (
             <ComposableMap
@@ -174,12 +184,12 @@ export function WorldMap() {
         </div>
 
         {/* country chip rail */}
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className="mt-8 flex snap-x snap-mandatory flex-nowrap gap-2 overflow-x-auto pb-2 md:flex-wrap md:overflow-visible md:pb-0">
           {DESTINATIONS.map((d) => (
             <button
               key={d.iso}
               onClick={() => setActive(d)}
-              className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition-all hover:-translate-y-0.5 hover:border-sky hover:bg-sky/15 hover:text-white"
+              className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition-all hover:-translate-y-0.5 hover:border-sky hover:bg-sky/15 hover:text-white"
             >
               <span className="text-base">{d.flag}</span>
               {d.name}

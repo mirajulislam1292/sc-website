@@ -116,6 +116,10 @@
   }
   html {
     scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+  body {
+    overflow-x: hidden;
   }
   section[id] {
     scroll-margin-top: 80px;

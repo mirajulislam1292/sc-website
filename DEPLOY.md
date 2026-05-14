@@ -26,7 +26,7 @@ npm run deploy
 That's it! The script will:
 - Build your site to `dist/client`
 - Connect via FTP to `82.25.83.46`
-- Upload everything to `public_html`
+- Upload everything to the FTP root for the account
 
 ### Files Deployed
 
@@ -36,4 +36,4 @@ Only the contents of `dist/client/` are uploaded. The `.htaccess` rewrite rules 
 
 - **"FTP_PASS environment variable not set"** → Make sure `.env` has your FTP password
 - **"Connection refused"** → Check your FTP password is correct
-- **404 on routes** → The `.htaccess` rules in `public_html` handle SPA routing automatically
+- **404 on routes** → The `.htaccess` rules in the FTP root handle SPA routing automatically

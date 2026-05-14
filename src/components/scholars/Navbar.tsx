@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { WA_LINK } from "@/lib/scholars-data";
-import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
   { label: "Home", href: "#top" },
@@ -64,7 +63,6 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <ThemeToggle scrolled={scrolled} />
             <a
               href={WA_LINK}
               target="_blank"
