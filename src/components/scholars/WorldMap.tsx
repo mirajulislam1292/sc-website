@@ -72,6 +72,7 @@ export function WorldMap() {
         {/* the map */}
         <div className="relative mt-12 overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-b from-[#0b1f44] to-[#07142a] shadow-2xl">
           <div className="aspect-[16/9] w-full">
+            {mounted && (
             <ComposableMap
               projectionConfig={{ scale: 155 }}
               width={980}
