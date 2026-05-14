@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { FAQS, WA_LINK, EMAIL } from "@/lib/scholars-data";
-import { Plus } from "lucide-react";
+import { Plus, Mail, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 export function FAQ() {
@@ -57,17 +57,19 @@ export function FAQ() {
           <span className="text-sm text-slate-500">Still have questions?</span>
           <a
             href={`mailto:${EMAIL}`}
-            className="rounded-full border-2 border-navy px-5 py-2.5 text-sm font-semibold text-navy transition-all hover:bg-navy hover:text-white"
+            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-navy px-5 py-2.5 text-sm font-semibold text-navy transition-all hover:bg-navy hover:text-white"
           >
-            📧 Email Us
+            <Mail className="h-4 w-4" aria-hidden />
+            Email us
           </a>
           <a
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-sky px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0284c7]"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-sky px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0284c7]"
           >
-            💬 WhatsApp Us
+            <MessageCircle className="h-4 w-4" aria-hidden />
+            WhatsApp us
           </a>
         </Reveal>
       </div>

@@ -1,5 +1,5 @@
 import { EMAIL, WA_LINK } from "@/lib/scholars-data";
-import { Facebook, Instagram, Linkedin, Mail } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Heart } from "lucide-react";
 
 export function Footer() {
   return (
@@ -48,7 +48,11 @@ export function Footer() {
 
       <div className="border-t border-white/7">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-3 px-5 py-7 text-[13px] text-white/40 md:flex-row md:px-8">
-          <div>© {new Date().getFullYear()} Scholars Cafe. All rights reserved. Made with <span className="text-rose-400">❤</span> in Bangladesh.</div>
+          <div className="flex items-center gap-1.5 text-[13px] text-white/40">
+            <span>© {new Date().getFullYear()} Scholars Cafe. All rights reserved. Made with</span>
+            <Heart className="inline h-3.5 w-3.5 fill-rose-400 text-rose-400" aria-hidden />
+            <span>in Bangladesh.</span>
+          </div>
           <div className="flex gap-5">
             <a href="#" className="hover:text-white">Privacy Policy</a>
             <a href="#" className="hover:text-white">Terms of Service</a>

@@ -1,6 +1,6 @@
 import { Reveal, RevealStagger, StaggerItem } from "./Reveal";
 import { TESTS, WA_LINK } from "@/lib/scholars-data";
-import { Check } from "lucide-react";
+import { Check, Star, MessageCircle } from "lucide-react";
 
 export function TestPrep() {
   return (
@@ -45,7 +45,8 @@ export function TestPrep() {
                   ))}
                 </ul>
                 <div className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold/15 px-4 py-2 text-[13px] font-bold text-gold-deep">
-                  ⭐ {t.target}
+                  <Star className="h-4 w-4 fill-gold text-gold" aria-hidden />
+                  {t.target}
                 </div>
               </div>
             </StaggerItem>
@@ -58,9 +59,10 @@ export function TestPrep() {
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-sky px-7 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0284c7] hover:shadow-button"
+            className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-sky px-7 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0284c7] hover:shadow-button"
           >
-            💬 Talk to a Test Mentor
+            <MessageCircle className="h-4 w-4" aria-hidden />
+            Talk to a Test Mentor
           </a>
         </Reveal>
       </div>

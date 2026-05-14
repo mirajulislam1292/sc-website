@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { EMAIL, PHONE, WA_LINK } from "@/lib/scholars-data";
-import { Mail, MessageCircle, MapPin, Check, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Check, Facebook, Instagram, Linkedin, Phone } from "lucide-react";
 
 const INTERESTS = [
   "Full Scholarship Track", "General Admission Track", "File Opening", "SAT Preparation",
@@ -51,7 +51,9 @@ export function Contact() {
             </div>
 
             <div className="rounded-3xl border-[1.5px] border-sky-tint bg-sky-soft p-7">
-              <div className="text-3xl">📞</div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-tint text-sky-deep">
+                <Phone className="h-6 w-6" strokeWidth={2} aria-hidden />
+              </div>
               <div className="mt-3 font-display text-lg font-bold text-navy">Book a Free 30-Minute Consultation</div>
               <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
                 No pressure. No commitment. Just honest guidance on your study abroad options from a real person who knows the process.
@@ -60,9 +62,10 @@ export function Contact() {
                 href={WA_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-2 rounded-full bg-sky px-6 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0284c7] hover:shadow-button"
+                className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-sky px-6 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0284c7] hover:shadow-button"
               >
-                💬 WhatsApp Us Now →
+                <MessageCircle className="h-4 w-4" aria-hidden />
+                WhatsApp us now →
               </a>
             </div>
           </Reveal>

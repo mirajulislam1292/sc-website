@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Reveal } from "./Reveal";
-import { Mail, Check } from "lucide-react";
+import { Mail, Check, PartyPopper } from "lucide-react";
 
 export function Newsletter() {
   const [email, setEmail] = useState("");
@@ -55,7 +55,10 @@ export function Newsletter() {
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-400 text-navy">
                 <Check className="h-6 w-6" strokeWidth={3} />
               </div>
-              <div className="mt-4 font-display text-lg font-bold">You're in! Welcome to the Scholars Cafe community. 🎉</div>
+              <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-2 font-display text-lg font-bold">
+                <span>You're in! Welcome to the Scholars Cafe community.</span>
+                <PartyPopper className="h-6 w-6 text-sky-light" strokeWidth={1.75} aria-hidden />
+              </div>
               <div className="mt-1 text-sm text-white/70">Check your inbox — your first guide is on its way.</div>
             </motion.div>
           )}

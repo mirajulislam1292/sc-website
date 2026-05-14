@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Phone, ArrowRight, Star } from "lucide-react";
+import { Phone, ArrowRight, Star, Trophy, Globe } from "lucide-react";
 import { WA_LINK } from "@/lib/scholars-data";
 
 export function Hero() {
@@ -141,7 +141,7 @@ export function Hero() {
             initial={{ opacity: 0, x: 60 }}
             delay={0.6}
           >
-            <div className="text-2xl">🏆</div>
+            <Trophy className="h-8 w-8 text-gold" strokeWidth={1.5} aria-hidden />
             <div className="mt-2">
               <div className="font-display text-base font-bold text-white">Scholarship Track</div>
               <div className="mt-1 text-xs text-white/70">Fully funded pathways available</div>
@@ -164,7 +164,7 @@ export function Hero() {
             initial={{ opacity: 0, x: 60 }}
             delay={1.2}
           >
-            <div className="text-2xl">🌐</div>
+            <Globe className="h-8 w-8 text-sky-light" strokeWidth={1.5} aria-hidden />
             <div className="mt-2">
               <div className="font-display text-base font-bold text-white">11+ Countries</div>
               <div className="mt-1 text-xs text-white/70">Worldwide university network</div>

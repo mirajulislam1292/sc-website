@@ -1,5 +1,6 @@
 import { Reveal, RevealStagger, StaggerItem } from "./Reveal";
 import { PROCESS } from "@/lib/scholars-data";
+import { ScholarIcon } from "./ScholarIcon";
 
 export function Process() {
   return (
@@ -24,7 +25,9 @@ export function Process() {
               <StaggerItem key={step.n}>
                 <div className={`relative flex flex-col gap-6 md:grid md:grid-cols-2 md:items-center md:gap-12 ${i % 2 === 1 ? "md:[direction:rtl]" : ""}`}>
                   <div className={`md:[direction:ltr] ${i % 2 === 1 ? "md:text-right" : "md:text-left"} pl-20 md:pl-0`}>
-                    <div className="text-3xl">{step.icon}</div>
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-sky-tint text-sky-deep">
+                      <ScholarIcon name={step.icon} className="h-6 w-6" />
+                    </div>
                     <h3 className="mt-3 font-display text-xl font-bold text-navy">
                       Step {step.n}: {step.title}
                     </h3>

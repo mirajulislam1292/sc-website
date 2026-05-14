@@ -1,6 +1,6 @@
 import { Reveal, RevealStagger, StaggerItem } from "./Reveal";
 import { COUNTRIES } from "@/lib/scholars-data";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Globe, Star } from "lucide-react";
 import { WA_LINK } from "@/lib/scholars-data";
 
 export function Destinations() {
@@ -8,7 +8,10 @@ export function Destinations() {
     <section id="destinations" className="bg-sky-soft py-24 md:py-32">
       <div className="mx-auto max-w-[1280px] px-5 md:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-bold uppercase tracking-[0.15em] text-sky">🌍 Global Reach</span>
+          <span className="inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-[0.15em] text-sky">
+            <Globe className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
+            Global reach
+          </span>
           <h2 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-navy">
             Study in Your Dream Country
           </h2>
@@ -35,7 +38,8 @@ export function Destinations() {
                 <div className="text-5xl">{c.flag}</div>
                 <div className="mt-4 font-display text-base font-bold text-navy">{c.name}</div>
                 <div className="mt-2 text-[13px] leading-snug text-slate-500">{c.note}</div>
-                <div className="mt-4 inline-flex rounded-full bg-sky-tint px-3 py-1 text-[11px] font-semibold text-sky-deep">
+                <div className="mt-4 inline-flex items-center gap-1 rounded-full bg-sky-tint px-3 py-1 text-[11px] font-semibold text-sky-deep">
+                  {c.featured && <Star className="h-3 w-3 fill-gold text-gold-deep" aria-hidden />}
                   {c.tag}
                 </div>
               </div>
@@ -48,7 +52,7 @@ export function Destinations() {
               rel="noopener noreferrer"
               className="flex h-full flex-col items-center justify-center rounded-3xl bg-navy p-7 text-center text-white transition-all hover:-translate-y-2 hover:bg-midnight"
             >
-              <div className="text-5xl">🌎</div>
+              <Globe className="mx-auto h-12 w-12 text-sky-light" strokeWidth={1.25} aria-hidden />
               <div className="mt-4 font-display text-base font-bold">More on request</div>
               <div className="mt-2 text-[13px] text-white/70">Ask about your preferred destination</div>
               <div className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-sky-light">
