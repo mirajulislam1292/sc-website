@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -37,6 +37,8 @@ const MARKERS: Record<string, [number, number]> = {
 export function WorldMap() {
   const [active, setActive] = useState<DestinationDetail | null>(null);
   const [hover, setHover] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <section
