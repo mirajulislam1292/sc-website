@@ -4,7 +4,6 @@ import {
   Geographies,
   Geography,
   Marker,
-  ZoomableGroup,
 } from "react-simple-maps";
 import { motion, AnimatePresence } from "motion/react";
 import { X, MapPin, GraduationCap, Calendar, Wallet, Languages, Stamp, ArrowUpRight } from "lucide-react";
@@ -84,94 +83,92 @@ export function WorldMap() {
           <div className="aspect-[16/9] w-full">
             {mounted && (
             <ComposableMap
-              projectionConfig={{ scale: 155 }}
+              projectionConfig={{ scale: 155, center: [15, 25] }}
               width={980}
               height={520}
               style={{ width: "100%", height: "100%" }}
             >
-              <ZoomableGroup center={[15, 25]} zoom={1} minZoom={1} maxZoom={4}>
-                <Geographies geography={GEO_URL}>
-                  {({ geographies }: { geographies: any[] }) =>
-                    geographies.map((geo: any) => {
-                      const iso = geo.properties.iso_a3 || geo.id;
-                      const dest = ISO_TO_DESTINATION[iso];
-                      const isActive = !!dest;
-                      return (
-                        <Geography
-                          key={geo.rsmKey}
-                          geography={geo}
-                          onMouseEnter={() => isActive && setHover(iso)}
-                          onMouseLeave={() => setHover(null)}
-                          onClick={() => isActive && dest && setActive(dest)}
-                          style={{
-                            default: {
-                              fill: isActive
-                                ? hover === iso
-                                  ? "#0ea5e9"
-                                  : "#1e3a6b"
-                                : "#13294b",
-                              stroke: "#07142a",
-                              strokeWidth: 0.5,
-                              outline: "none",
-                              cursor: isActive ? "pointer" : "default",
-                              transition: "fill 0.2s ease",
-                            },
-                            hover: {
-                              fill: isActive ? "#38bdf8" : "#13294b",
-                              outline: "none",
-                            },
-                            pressed: { fill: "#0284c7", outline: "none" },
-                          }}
-                        />
-                      );
-                    })
-                  }
-                </Geographies>
-                {DESTINATIONS.map((d) => {
-                  const coord = MARKERS[d.iso];
-                  if (!coord) return null;
-                  return (
-                    <Marker
-                      key={d.iso}
-                      coordinates={coord}
-                      onClick={() => setActive(d)}
-                      onMouseEnter={() => setHover(d.iso)}
-                      onMouseLeave={() => setHover(null)}
-                      style={{
-                        default: { cursor: "pointer" },
-                        hover: { cursor: "pointer" },
-                        pressed: { cursor: "pointer" },
-                      }}
-                    >
-                      <circle
-                        r={hover === d.iso ? 7 : 4}
-                        fill="#38bdf8"
-                        stroke="#fff"
-                        strokeWidth={1.5}
-                        style={{ transition: "r 0.2s" }}
+              <Geographies geography={GEO_URL}>
+                {({ geographies }: { geographies: any[] }) =>
+                  geographies.map((geo: any) => {
+                    const iso = geo.properties.iso_a3 || geo.id;
+                    const dest = ISO_TO_DESTINATION[iso];
+                    const isActive = !!dest;
+                    return (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        onMouseEnter={() => isActive && setHover(iso)}
+                        onMouseLeave={() => setHover(null)}
+                        onClick={() => isActive && dest && setActive(dest)}
+                        style={{
+                          default: {
+                            fill: isActive
+                              ? hover === iso
+                                ? "#0ea5e9"
+                                : "#1e3a6b"
+                              : "#13294b",
+                            stroke: "#07142a",
+                            strokeWidth: 0.5,
+                            outline: "none",
+                            cursor: isActive ? "pointer" : "default",
+                            transition: "fill 0.2s ease",
+                          },
+                          hover: {
+                            fill: isActive ? "#38bdf8" : "#13294b",
+                            outline: "none",
+                          },
+                          pressed: { fill: "#0284c7", outline: "none" },
+                        }}
                       />
-                      <circle r={10} fill="#38bdf8" opacity={0.25}>
-                        <animate
-                          attributeName="r"
-                          from="6"
-                          to="14"
-                          dur="2s"
-                          begin="0s"
-                          repeatCount="indefinite"
-                        />
-                        <animate
-                          attributeName="opacity"
-                          from="0.5"
-                          to="0"
-                          dur="2s"
-                          begin="0s"
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                    </Marker>
-                  );
-                })}
-              </ZoomableGroup>
+                    );
+                  })
+                }
+              </Geographies>
+              {DESTINATIONS.map((d) => {
+                const coord = MARKERS[d.iso];
+                if (!coord) return null;
+                return (
+                  <Marker
+                    key={d.iso}
+                    coordinates={coord}
+                    onClick={() => setActive(d)}
+                    onMouseEnter={() => setHover(d.iso)}
+                    onMouseLeave={() => setHover(null)}
+                    style={{
+                      default: { cursor: "pointer" },
+                      hover: { cursor: "pointer" },
+                      pressed: { cursor: "pointer" },
+                    }}
+                  >
+                    <circle
+                      r={hover === d.iso ? 7 : 4}
+                      fill="#38bdf8"
+                      stroke="#fff"
+                      strokeWidth={1.5}
+                      style={{ transition: "r 0.2s" }}
+                    />
+                    <circle r={10} fill="#38bdf8" opacity={0.25}>
+                      <animate
+                        attributeName="r"
+                        from="6"
+                        to="14"
+                        dur="2s"
+                        begin="0s"
+                        repeatCount="indefinite"
+                      />
+                      <animate
+                        attributeName="opacity"
+                        from="0.5"
+                        to="0"
+                        dur="2s"
+                        begin="0s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  </Marker>
+                );
+              })}
             </ComposableMap>
             )}
           </div>
