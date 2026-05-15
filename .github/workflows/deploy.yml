@@ -30,6 +30,7 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_DIR: ${{ secrets.FTP_DIR }}
         run: |
           # Use the existing deploy script
           node scripts/deploy.js

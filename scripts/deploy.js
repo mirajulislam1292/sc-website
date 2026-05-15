@@ -11,11 +11,16 @@ const FTP_HOST = process.env.FTP_HOST || '82.25.83.46';
 const FTP_USER = process.env.FTP_USER || 'u814252648.adminsc';
 const FTP_PORT = parseInt(process.env.FTP_PORT || '21', 10);
 const FTP_PASS = process.env.FTP_PASS || process.env.FTP_PASSWORD;
-const REMOTE_DIR = process.env.FTP_DIR || '.';
+const REMOTE_DIR = process.env.FTP_DIR;
 const LOCAL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'dist', 'client');
 
 if (!FTP_PASS) {
   console.error('[ERROR] FTP_PASS environment variable not set');
+  process.exit(1);
+}
+
+if (!REMOTE_DIR) {
+  console.error('[ERROR] FTP_DIR environment variable not set');
   process.exit(1);
 }
 
