@@ -1,46 +1,58 @@
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { ArrowUpRight, Sparkles } from "lucide-react";
-import { useEffect } from "react";
+import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 import { WA_LINK } from "@/lib/scholars-data";
 import heroCampus from "@/assets/hero-campus.jpg";
 
 const TICKER = [
-  "Harvard", "MIT", "Stanford", "UCL", "TU Munich", "Yonsei",
-  "U of Toronto", "Imperial", "Amherst", "KAIST", "Williams",
-  "Heidelberg", "Edinburgh", "KTH", "McGill",
+  "Allegheny College",
+  "Augustana College",
+  "Beloit College",
+  "Calvin University",
+  "Centre College",
+  "Clark University",
+  "Caldwell University",
+  "Denison University",
+  "DePauw University",
+  "Florida Southern College",
+  "Franklin & Marshall College",
+  "Furman University",
+  "Gettysburg College",
+  "Hope College",
+  "Illinois Tech",
+  "Iowa State University",
+  "Knox College",
+  "Kent State University",
+  "Lake Forest College",
+  "Lawrence University",
+  "Luther College",
+  "University of Maryland",
+  "Millsaps College",
+  "NJIT",
+  "NYIT",
+  "Penn State",
+  "Purdue University",
+  "Rhodes College",
+  "Sewanee University",
+  "Sweet Briar College",
+  "Temple University",
+  "University of Connecticut",
+  "University of Delaware",
+  "Union College",
+  "VCU",
+  "Wabash College",
+  "Whitman College",
+  "Whitworth University",
+  "Wofford College",
 ];
 
 export function Hero() {
-  // mouse-driven parallax for cinematic "3D" feel
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 60, damping: 20, mass: 0.6 });
-  const sy = useSpring(my, { stiffness: 60, damping: 20, mass: 0.6 });
-  const bgX = useTransform(sx, [-1, 1], ["-2%", "2%"]);
-  const bgY = useTransform(sy, [-1, 1], ["-2%", "2%"]);
-  const bgScale = useTransform(sy, [-1, 1], [1.08, 1.12]);
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      mx.set(x);
-      my.set(y);
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [mx, my]);
-
   return (
     <section
       id="top"
       className="relative isolate overflow-hidden bg-[var(--navy-deep)] pt-24 md:pt-28"
     >
       {/* full-bleed cinematic campus photo */}
-      <motion.div
-        className="absolute inset-0 -z-20"
-        style={{ x: bgX, y: bgY, scale: bgScale }}
-      >
+      <div className="absolute inset-0 -z-20">
         <img
           src={heroCampus}
           alt="Historic university campus at golden hour"
@@ -48,7 +60,7 @@ export function Hero() {
           height={1280}
           className="h-full w-full object-cover"
         />
-      </motion.div>
+      </div>
 
       {/* dramatic gradient + vignette overlays (Crimson-style shadow) */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,18,42,0.96)_0%,rgba(7,18,42,0.78)_38%,rgba(7,18,42,0.35)_70%,rgba(7,18,42,0.55)_100%)]" />
@@ -58,18 +70,6 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
 
       <div className="relative mx-auto max-w-[1320px] px-5 md:px-10">
-        {/* eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-light md:text-[11px] md:tracking-[0.22em]"
-        >
-          <span className="h-px w-10 bg-sky-light/60" />
-          <Sparkles className="h-3 w-3" />
-          Bangladesh · Est. 2020 · Trusted by 100+ Students
-        </motion.div>
-
         {/* editorial headline */}
         <div className="mt-8 grid grid-cols-1 gap-10 lg:mt-10 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
           <div>
