@@ -38,6 +38,7 @@ function Index() {
       <main>
         <Hero />
         <Stats />
+        <AcceptedAt />
         <Destinations />
         <WorldMap />
         <Programs />
